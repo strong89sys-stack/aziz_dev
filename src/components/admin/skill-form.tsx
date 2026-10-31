@@ -18,10 +18,10 @@ export function SkillForm({ action, skill, submitLabel }: { action: FormAction; 
       </div>
       <div className="field">
         <label>Classe DevIcon <span style={{ textTransform: "none", letterSpacing: 0 }}>(ex: devicon-nextjs-plain)</span></label>
-        <input name="iconClass" defaultValue={skill?.iconClass} placeholder="devicon-nextjs-plain" />
+        <input name="iconClass" defaultValue={skill?.iconClass ?? ""} placeholder="devicon-nextjs-plain" />
         {skill?.iconClass && (
           <div className="mt-2 flex items-center gap-2">
-            <i className={skill.iconClass} className="text-xl"></i>
+            <i className={`${skill.iconClass} text-xl`}></i>
             <span className="text-xs text-gray-500">Aperçu</span>
           </div>
         )}

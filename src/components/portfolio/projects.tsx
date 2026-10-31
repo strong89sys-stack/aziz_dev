@@ -32,7 +32,7 @@ export function Projects({ projects }: ProjectsProps) {
               <p>{project.description}</p>
               <div className="project-footer">
                 <div className="chip-list">
-                  {project.technologies.map((technology) => <span className="chip" key={technology}>{technology}</span>)}
+                  {project.technologies.map((technology: string) => <span className="chip" key={technology}>{technology}</span>)}
                 </div>
                 <div className="project-links">
                   {project.repoUrl && (

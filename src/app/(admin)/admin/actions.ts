@@ -20,7 +20,7 @@ function checked(formData: FormData, name: string) {
   return formData.get(name) === "on";
 }
 
-function validationError(error: { issues: Array<{ message: string }> }) {
+function validationError(error: { issues: Array<{ message: string }> }): never {
   throw new Error(error.issues[0]?.message ?? "Les données saisies ne sont pas valides.");
 }
 
@@ -48,12 +48,18 @@ function projectInput(formData: FormData) {
   });
 
   if (!parsed.success) validationError(parsed.error);
+  const data = parsed.data;
 
   return {
-    ...parsed.data,
-    slug: toSlug(parsed.data.slug || title),
-    repoUrl: parsed.data.repoUrl || null,
-    liveUrl: parsed.data.liveUrl || null,
+    ...data,
+    title: data.title ?? "",
+    excerpt: data.excerpt ?? "",
+    description: data.description ?? "",
+    imageUrl: data.imageUrl ?? "",
+    category: data.category ?? "",
+    slug: toSlug(data.slug || title),
+    repoUrl: data.repoUrl || null,
+    liveUrl: data.liveUrl || null,
     featured: checked(formData, "featured"),
     published: checked(formData, "published"),
   };
@@ -107,7 +113,7 @@ async function handleFileUpload(formData: FormData, fieldName: string, folder: s
   if (!file || file.size === 0) return null;
 
   const buffer = Buffer.from(await file.arrayBuffer());
-  const result = await uploadToCloudinary(buffer, folder);
+  const result = (await uploadToCloudinary(buffer, folder)) as { secure_url: string };
   return result.secure_url;
 }
 
@@ -118,7 +124,13 @@ function skillInput(formData: FormData) {
     sortOrder: text(formData, "sortOrder"),
   });
   if (!parsed.success) validationError(parsed.error);
-  return parsed.data;
+  const data = parsed.data;
+  
+  return {
+    ...data,
+    name: data.name ?? "",
+    group: data.group ?? "",
+  };
 }
 
 export async function createSkill(formData: FormData) {
@@ -170,9 +182,14 @@ function experienceInput(formData: FormData) {
     sortOrder: text(formData, "sortOrder"),
   });
   if (!parsed.success) validationError(parsed.error);
+  const data = parsed.data;
+  
   return {
-    ...parsed.data,
-    organization: parsed.data.organization || null,
+    ...data,
+    title: data.title ?? "",
+    period: data.period ?? "",
+    description: data.description ?? "",
+    organization: data.organization || null,
     published: checked(formData, "published"),
   };
 }
@@ -224,12 +241,23 @@ export async function updateProfile(formData: FormData) {
     linkedinUrl: text(formData, "linkedinUrl"),
   });
   if (!parsed.success) validationError(parsed.error);
+  const parsedData = parsed.data;
 
   const data = {
-    ...parsed.data,
-    phone: parsed.data.phone || null,
-    githubUrl: parsed.data.githubUrl || null,
-    linkedinUrl: parsed.data.linkedinUrl || null,
+    ...parsedData,
+    displayName: parsedData.displayName ?? "",
+    role: parsedData.role ?? "",
+    headline: parsedData.headline ?? "",
+    bio: parsedData.bio ?? "",
+    philosophy: parsedData.philosophy ?? "",
+    location: parsedData.location ?? "",
+    email: parsedData.email ?? "",
+    availability: parsedData.availability ?? "",
+    avatarUrl: parsedData.avatarUrl ?? "",
+    cvUrl: parsedData.cvUrl ?? "",
+    phone: parsedData.phone || null,
+    githubUrl: parsedData.githubUrl || null,
+    linkedinUrl: parsedData.linkedinUrl || null,
     ...(avatarFile && { avatarUrl: avatarFile }),
     ...(cvFile && { cvUrl: cvFile }),
   };
