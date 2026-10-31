@@ -1,0 +1,47 @@
+{
+  "name": "aziz-portfolio-next",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@11",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "prisma generate && next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "db:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev",
+    "db:deploy": "prisma migrate deploy",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:studio": "prisma studio",
+    "auth:generate": "npx auth@latest generate"
+  },
+  "dependencies": {
+    "@better-auth/prisma-adapter": "^1.7.14",
+    "@prisma/adapter-pg": "^7.0.0",
+    "@prisma/client": "^7.0.0",
+    "better-auth": "^1.7.14",
+    "cloudinary": "^2.11.0",
+    "dotenv": "^17.0.0",
+    "lucide-react": "^0.468.0",
+    "next": "^16.4.3",
+    "pg": "^8.13.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.2.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^22.10.0",
+    "@types/pg": "^8.11.10",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "eslint": "^9.17.0",
+    "eslint-config-next": "^16.4.3",
+    "prisma": "^7.0.0",
+    "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
