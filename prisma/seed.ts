@@ -160,7 +160,7 @@ async function main() {
   await prisma.portfolioProfile.upsert({
     where: { id: 1 },
     update: profile,
-    create: { id: 1, ...profile },
+    create: { ...profile },
   });
 
   // 2. Projects
@@ -185,17 +185,17 @@ async function main() {
   }
 
   // 5. Admin User
-  const adminEmail = "admin@exemple.com";
+  const adminEmail = "titeuf494@gmail.com";
   const adminUser = await prisma.user.findUnique({ where: { email: adminEmail } });
 
   if (!adminUser) {
     const adminId = "admin-user-id-123";
-    const hashedPassword = await hash("admin123", 10);
+    const hashedPassword = await hash("428864Az", 10);
 
     await prisma.user.create({
       data: {
         id: adminId,
-        name: "Administrateur",
+        name: "Kabore Adelazize",
         email: adminEmail,
         role: "admin",
         emailVerified: true,
@@ -212,112 +212,6 @@ async function main() {
       },
     });
     console.log("Admin user created successfully.");
-  }
-}
-
-main()
-  .then(() => console.log("Portfolio seeded."))
-  .catch((error) => {
-    console.error(error);
-    process.exitCode = 1;
-  })
-  .finally(() => prisma.$disconnect());
-
-    category: "Personnel",
-    technologies: ["React", "Sass"],
-    repoUrl: "https://github.com/strong89sys-stack/Trinity-Game",
-    liveUrl: "https://trinity-game-wheat.vercel.app/",
-    featured: false,
-    published: true,
-    sortOrder: 4,
-  },
-  {
-    slug: "expense-tracker",
-    title: "Expense Tracker",
-    excerpt: "Un assistant de budget compact pour noter, filtrer et mieux lire ses dépenses au quotidien.",
-    description: "Application de suivi des dépenses et des revenus avec une interface moderne, un système de tri et une lecture immédiate de l’évolution du budget.",
-    imageUrl: "/images/projects/expense-tracker.png",
-    category: "Personnel",
-    technologies: ["HTML", "CSS", "JavaScript", "Flask API", "MySQL"],
-    repoUrl: "https://github.com/strong89sys-stack/Expenses_app",
-    liveUrl: null,
-    featured: false,
-    published: true,
-    sortOrder: 5,
-  },
-];
-
-const skills = [
-  "React",
-  "JavaScript",
-  "TypeScript",
-  "Tailwind CSS",
-  "Vue.js",
-  "Next.js",
-  "Laravel",
-  "PHP",
-  "Sass",
-  "Python",
-  "Git",
-  "GitHub",
-  "PostgreSQL",
-  "MySQL",
-];
-
-const experiences = [
-  {
-    title: "Développeur Full-Stack — Projets personnels & apprentissage avancé",
-    organization: null,
-    period: "2026 — aujourd’hui",
-    description: "Poursuite de ma formation en développement logiciel, avec un approfondissement de mes compétences en développement web, conception d’applications et architectures modernes.",
-    sortOrder: 1,
-    published: true,
-  },
-  {
-    title: "Licence 2 — Réseaux & Génie Logiciel",
-    organization: "PIGIER Côte d’Ivoire — BTS",
-    period: "2025 — 2026",
-    description: "Deuxième année de formation avec obtention du BTS. Développement de compétences en programmation, bases de données, développement web et conception d’applications.",
-    sortOrder: 2,
-    published: true,
-  },
-  {
-    title: "Licence 1 — Réseaux & Génie Logiciel",
-    organization: "PIGIER Côte d’Ivoire",
-    period: "2024 — 2025",
-    description: "Découverte et acquisition des fondamentaux de la programmation, des réseaux, des bases de données et du développement logiciel.",
-    sortOrder: 3,
-    published: true,
-  },
-  {
-    title: "Baccalauréat",
-    organization: null,
-    period: "2024",
-    description: "Obtention du Baccalauréat et début de mon parcours dans le domaine de l’informatique et du développement logiciel.",
-    sortOrder: 4,
-    published: true,
-  },
-];
-
-async function main() {
-  await prisma.portfolioProfile.createMany({ data: [profile], skipDuplicates: true });
-
-  if ((await prisma.project.count()) === 0) {
-    await prisma.project.createMany({ data: projects });
-  }
-
-  if ((await prisma.skill.count()) === 0) {
-    await prisma.skill.createMany({
-      data: skills.map((name, index) => ({
-        name,
-        group: "Technologies",
-        sortOrder: index + 1,
-      })),
-    });
-  }
-
-  if ((await prisma.experience.count()) === 0) {
-    await prisma.experience.createMany({ data: experiences });
   }
 }
 
