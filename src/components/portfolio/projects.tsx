@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, Github, Play } from "lucide-react";
-import type { Project } from "@/generated/prisma/client";
+import type { Project } from "@prisma/client";
 
 type ProjectsProps = {
   projects: Project[];

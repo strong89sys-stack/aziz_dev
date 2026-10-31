@@ -1,4 +1,4 @@
-import type { Project } from "@/generated/prisma/client";
+import type { Project } from "@prisma/client";
 
 type FormAction = (formData: FormData) => void | Promise<void>;
 

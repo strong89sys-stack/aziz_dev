@@ -1,4 +1,4 @@
-import type { Experience } from "@/generated/prisma/client";
+import type { Experience } from "@prisma/client";
 
 type FormAction = (formData: FormData) => void | Promise<void>;
 

@@ -1,5 +1,5 @@
 import { Github, Linkedin } from "lucide-react";
-import type { PortfolioProfile } from "@/generated/prisma/client";
+import type { PortfolioProfile } from "@prisma/client";
 
 type FooterProps = {
   profile: PortfolioProfile;

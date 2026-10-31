@@ -1,5 +1,5 @@
 import { Mail, MapPin, MessageCircle } from "lucide-react";
-import type { PortfolioProfile } from "@/generated/prisma/client";
+import type { PortfolioProfile } from "@prisma/client";
 import { ContactForm } from "@/components/portfolio/contact-form";
 
 type ContactProps = {

@@ -1,5 +1,5 @@
 import { Route } from "lucide-react";
-import type { Experience } from "@/generated/prisma/client";
+import type { Experience } from "@prisma/client";
 
 type ExperienceTimelineProps = {
   experiences: Experience[];

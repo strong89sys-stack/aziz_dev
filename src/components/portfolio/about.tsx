@@ -1,5 +1,5 @@
 import { Layers3, Sparkles } from "lucide-react";
-import type { PortfolioProfile, Skill } from "@/generated/prisma/client";
+import type { PortfolioProfile, Skill } from "@prisma/client";
 
 type AboutProps = {
   profile: PortfolioProfile;

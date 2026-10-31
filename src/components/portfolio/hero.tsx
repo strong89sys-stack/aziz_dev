@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowDownRight, ArrowUpRight, MapPin, Sparkles } from "lucide-react";
-import type { PortfolioProfile } from "@/generated/prisma/client";
+import type { PortfolioProfile } from "@prisma/client";
 
 type HeroProps = {
   profile: PortfolioProfile;
