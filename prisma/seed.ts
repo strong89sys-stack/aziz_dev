@@ -185,34 +185,34 @@ async function main() {
   }
 
   // 5. Admin User
-  const adminEmail = "titeuf494@gmail.com";
-  const adminUser = await prisma.user.findUnique({ where: { email: adminEmail } });
+  // const adminEmail = "titeuf494@gmail.com";
+  // const adminUser = await prisma.user.findUnique({ where: { email: adminEmail } });
 
-  if (!adminUser) {
-    const adminId = "admin-user-id-123";
-    const hashedPassword = await hash("428864Az", 10);
+  // if (!adminUser) {
+  //   const adminId = "admin-user-id-123";
+  //   const hashedPassword = await hash("428864Az", 10);
 
-    await prisma.user.create({
-      data: {
-        id: adminId,
-        name: "Kabore Adelazize",
-        email: adminEmail,
-        role: "admin",
-        emailVerified: true,
-      },
-    });
+  //   await prisma.user.create({
+  //     data: {
+  //       id: adminId,
+  //       name: "Kabore Adelazize",
+  //       email: adminEmail,
+  //       role: "admin",
+  //       emailVerified: true,
+  //     },
+  //   });
 
-    await prisma.account.create({
-      data: {
-        id: "admin-account-id-123",
-        accountId: "admin-account",
-        providerId: "password",
-        userId: adminId,
-        password: hashedPassword,
-      },
-    });
-    console.log("Admin user created successfully.");
-  }
+  //   await prisma.account.create({
+  //     data: {
+  //       id: "admin-account-id-123",
+  //       accountId: "admin-account",
+  //       providerId: "password",
+  //       userId: adminId,
+  //       password: hashedPassword,
+  //     },
+  //   });
+  //   console.log("Admin user created successfully.");
+  // }
 }
 
 main()
